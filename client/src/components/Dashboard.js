@@ -61,7 +61,7 @@ const Dashboard = ({ setAuth }) => {
           </NavLink>
           <img src="" className="logo md-1" alt="SRMIST" />
 
-          <h2>Welcome {name}</h2>
+          <h2>Welcome to application {name}</h2>
           
           <ul className="navbar-nav ms-auto">
             <li className="nav-link">
