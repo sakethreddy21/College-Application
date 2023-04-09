@@ -1,0 +1,16 @@
+.nav-link{
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #edf6fa;
+  font-size: 15px;
+  background: #1196e8;
+  padding: 8px 10px;
+  border: solid #333 2px;
+  text-decoration: none;
+}
+.link:hover{
+  background: #42ad36;
+  text-decoration: none;
+}
