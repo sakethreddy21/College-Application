@@ -31,9 +31,9 @@ const Requestform=()=> {
     <Fragment>
     <div>
       <body>
-      
+      <div className="bodyofform">
         <form onSubmit={onSubmitform}>
-          <p><span className="name">Proctor Name :</span> Faculty Advisor</p>
+      
           <div className="mb-3">
             <label for="input" placeholder="--Select--"  ><span className="name">Leave Type</span>  </label>
             <select id="input" className="form-control" value={leaveType} onChange={e => setLeavetype(e.target.value)}>
@@ -73,7 +73,7 @@ const Requestform=()=> {
         
           <button type="submit" className="submit">Submit</button>
         </form>
-
+        </div>
       </body>
     </div>
     </Fragment>

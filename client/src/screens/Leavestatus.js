@@ -1,6 +1,6 @@
 import React ,{useState, useEffect} from 'react'
 
-
+import './leavestatus.css'
 
 export default function LeaveStatus() {
   const [leaves, setleaves] = useState([]);

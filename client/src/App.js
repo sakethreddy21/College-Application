@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Requestform from './screens/Requestform'
+import Leavestatus from './screens/Leavestatus'
 
 import{BrowserRouter as Router,
 Routes, Route, Navigate} from "react-router-dom";
@@ -81,6 +82,17 @@ function App() {
               element={
                 isAuthenticated ? (
                  <Requestform />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/leavestatus"
+              element={
+                isAuthenticated ? (
+                 <Leavestatus />
                 ) : (
                   <Navigate to="/login" />
                 )
