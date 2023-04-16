@@ -1,0 +1,112 @@
+.bodyofform{
+  margin:0;
+  display: flex;
+}
+
+form{
+  margin-top: 0px;
+  margin-left: 30em;
+  margin-right: 40em;
+  padding: 30px;
+}
+.head{
+  font-size: 30px;
+  left: 10%;
+  padding: 20px;
+  padding-bottom: 10px;
+  font-family: sans-serif;
+  margin-left: 4%;
+
+}
+.sub{
+  font-size: 10px;
+  padding: 5  0px;
+}
+.name{
+  color: blue;
+  font-weight: bold;
+  width: 100%;
+  display: inline;
+  margin-right: 10px;
+  
+}
+button{
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+}
+.nithin{
+  width: 100%;
+  height: 7px;
+  margin-top: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: blue;
+  border: 0 none;
+ 
+}
+.submit {
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #edf6fa;
+  font-size: 15px;
+  background: #1196e8;
+  padding: 8px 10px;
+  border: solid #333 2px;
+  text-decoration: none;
+}
+
+.submit:hover {
+  background: #42ad36;
+  text-decoration: none;
+}
+
+.Button{
+  padding:0% 2%;
+}
+.nav-color{
+  background-color: rgb(3, 173, 252);
+  width: 100%;
+  height: 45px;
+}
+
+/* navigation bar */
+
+.navbar {
+  height: 80px;
+  padding-left:100px ;
+  padding-right: 100px;
+
+}
+.logo{
+  height: 60px;
+  margin: 0px;
+  margin-top: 10px;
+}
+.nav-item{
+  padding: 0 18px;
+}
+
+.navbar-brand{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.srm{
+  padding-bottom: 20px;
+}
+
+.nav-link{
+  font-size: 1rem;
+}
+
+.reg{
+  font-weight: bold;
+  color: whitesmoke;
+}
+.form-control{
+  display: flex;
+  width:fit-content;
+}

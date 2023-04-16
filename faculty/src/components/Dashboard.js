@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom'
 import Leaverequest from '../screens/Requestform'
-import './Navbar.css'
+import './dashboard.css'
 import Leavestatus from '../screens/Leavestatus'
 import LeaveHistory from '../screens/LeaveHistory'
 import Box from '@mui/material/Box';
@@ -14,7 +14,6 @@ import TabPanel from '@mui/lab/TabPanel';
 const Dashboard = ({ setAuth }) => {
 
   const [name, setName] = useState("");
-  const [regnum, setregnum] = useState("");
 
   const getProfile = async () => {
     try {
@@ -25,7 +24,6 @@ const Dashboard = ({ setAuth }) => {
 
       const parseData = await res.json();
       setName(parseData.user_name);
-      setregnum(parseData.regnum)
     } catch (err) {
       console.error(err.message);
     }
@@ -71,7 +69,7 @@ const Dashboard = ({ setAuth }) => {
                 <i className="fa-solid fa-user"></i>
               </NavLink  >
               <div className="flex-box">
-                <span className="reg">{regnum}(Student)</span>
+                <span className="reg">Register Number(Student)</span>
                 <button onClick={e => logout(e)} className="btn btn-primary">
             Logout
           </button>
@@ -88,9 +86,9 @@ const Dashboard = ({ setAuth }) => {
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab className="nav-link" label="Leave Request" value="1" />
-                <Tab className="nav-link" label="Leave Status" value="2" />
-                <Tab className="nav-link" label="Leave History" value="3" />
+                <Tab className="nav-link" label="Leave Requests" value="1" />
+                <Tab className="nav-link" label="Leave approved" value="2" />
+                <Tab className="nav-link" label="Leave declined" value="3" />
               </TabList>
             </Box>
             <TabPanel value="1"><Leaverequest/></TabPanel>

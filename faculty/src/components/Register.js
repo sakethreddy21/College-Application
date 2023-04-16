@@ -4,20 +4,16 @@ import { Link } from "react-router-dom";
 
 const Register=({setAuth})=> {
 
-  const [name, setname]= useState("")
-  const [regnum, setregnum]= useState("")
   const [email, setemail]= useState("")
- 
   const [password, setpassword]= useState("")
- 
-  
+  const [name, setname]= useState("")
    
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
-      const body = { email, regnum, password, name };
+      const body = { email, password, name };
       const response = await fetch(
-        "http://localhost:5000/auth/register",
+        "http://localhost:5002/auth/register",
         {
           method: "POST",
           headers: {
@@ -51,11 +47,10 @@ const Register=({setAuth})=> {
 
   <div className="container">
     
-  <input type="text" placeholder="Enter Username" className="form-control my-3" name="name" required value={name} onChange={e => setname(e.target.value)}/>
-  <input type="text" placeholder="Enter registration number" className="form-control my-3" name="regnum" required value={regnum} onChange={e => setregnum(e.target.value)}/>
+
   <input type="email" placeholder="Enter email" className="form-control my-3" required value={email} onChange={e => setemail(e.target.value)}/>
     <input type="password" placeholder="Enter Password" className="form-control my-3" required value={password} onChange={e => setpassword(e.target.value)}/>
-    
+    <input type="text" placeholder="Enter Username" className="form-control my-3" name="name" required value={name} onChange={e => setname(e.target.value)}/>
     <button className="btn btn-success btn-block" type="submit">Submit</button>
     
   </div>

@@ -3,7 +3,9 @@ import React ,{useState, useEffect} from 'react'
 import './leavestatus.css'
 
 export default function LeaveStatus() {
-  const [leaves, setleaves] = useState([]);
+  const [leaves, setLeaves] = useState([]);
+  const [name, setName] = useState("");
+  const [regnum, setRegnum] = useState("");
   //delete the leaves funtion
 
   async function deleteleave(id){
@@ -12,20 +14,48 @@ export default function LeaveStatus() {
         method:"DELETE"
       });
 
-      setleaves(leaves.filter(data=>data.leave_id!==id));
+      setLeaves(leaves.filter(data=>data.leave_id!==id));
     } catch (err) {
       console.err(err.message);
     }
   }
-  const getLeaves = async e => {
-    const res = await fetch("http://localhost:5001/leaves");
-    const leavearray = await res.json();
-    console.log(leavearray);
-    setleaves(leavearray);
+  
+  const getProfile = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/dashboard", {
+        method: "POST",
+        headers: { token: localStorage.token }
+      });
+
+      const parseData = await res.json();
+      setName(parseData.user_name);
+      setRegnum(parseData.regnum)
+    } catch (err) {
+      console.error(err.message);
+    }
   };
+  
+
+
+
+
+
+
+
   useEffect(() => {
-    getLeaves();
-  }, [])
+    const getLeave = async () => {
+      try {
+        const res = await fetch(`http://localhost:5001/leave/${regnum}`);
+        const leavearray = await res.json();
+        console.log(leavearray);
+        setLeaves(leavearray);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    getLeave();
+    getProfile();
+  }, [regnum])
   
 
   return (

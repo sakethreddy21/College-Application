@@ -1,18 +1,44 @@
-import React, {useState, Fragment} from "react";
+import React, {useState,useEffect, Fragment} from "react";
 import './Requestform.css';
 
 
 
 const Requestform=()=> {
-  const [leaveType, setLeavetype] = useState("");
+
+
+  
+  const [stdname, setusername] = useState("");
+  const [regNum, setregnum] = useState("");
+  const [leaveType, setLeavetype]= useState("")
   const[visitingPlace, setVistingplace]= useState("");
   const [reason, setReason] = useState("");
   const [fromDate, setFromdate] = useState("");
   const [toDate, setTodate] = useState("");
-  console.log(leaveType,visitingPlace,reason,fromDate,toDate );
+
+  const getProfile = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/dashboard", {
+        method: "POST",
+        headers: { token: localStorage.token, "Content-Type": "application/json" }
+      });
+
+      const parseData = await res.json();
+      setusername(parseData.user_name);
+      setregnum(parseData.regnum)
+      
+      
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+  console.log(stdname,regNum,leaveType,visitingPlace,reason,fromDate,toDate );
   const onSubmitform=async  e=>{
     try {
-      const body= {leaveType,visitingPlace,reason,fromDate,toDate };
+      const body={stdname,regNum,leaveType,visitingPlace,reason,fromDate,toDate }
       const response = await fetch("http://localhost:5001/leaves", {
         method:"Post",
         headers:{"Content-Type":"application/json"},
@@ -35,6 +61,8 @@ const Requestform=()=> {
         <form onSubmit={onSubmitform}>
       
           <div className="mb-3">
+
+            
             <label for="input" placeholder="--Select--"  ><span className="name">Leave Type</span>  </label>
             <select id="input" className="form-control" value={leaveType} onChange={e => setLeavetype(e.target.value)}>
               <option value="od"></option>

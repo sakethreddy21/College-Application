@@ -9,10 +9,10 @@ const authorize = require("../middleware/authorization");
 //authorizeentication
 
 router.post("/register", validInfo, async (req, res) => {
-  const { email,regnum, name, password } = req.body;
+  const { email, name, password } = req.body;
 
   try {
-    const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
+    const user = await pool.query("SELECT * FROM  facultyusers WHERE user_email = $1", [
       email
     ]);
 
@@ -24,8 +24,8 @@ router.post("/register", validInfo, async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, salt);
 
     let newUser = await pool.query(
-      "INSERT INTO users (user_name,regnum, user_email, user_password) VALUES ($1, $2, $3, $4) RETURNING *",
-      [name, regnum, email, bcryptPassword]
+      "INSERT INTO  facultyusers (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
+      [name, email, bcryptPassword]
     );
 
     const jwtToken = jwtGenerator(newUser.rows[0].user_id);
@@ -41,7 +41,7 @@ router.post("/login", validInfo, async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
+    const user = await pool.query("SELECT * FROM   facultyusers WHERE user_email = $1", [
       email
     ]);
 

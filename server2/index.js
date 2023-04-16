@@ -15,6 +15,22 @@ app.get("/leaves", async (req, res)=>{
     
   }
 })
+
+//get the no of entries per regestration num[
+  app.get("/leave/:regnum", async (req, res) => {
+    try {
+      const {regnum} = req.params; // retrieve the name from query parameters
+      // Query the PostgreSQL database to fetch leaves for the specified name
+      const query = 'SELECT * FROM stdleaves WHERE regnum = $1';
+    const result = await pool.query(query, [regnum]);
+    
+      res.json(result.rows);
+    } catch (error) {
+      console.error("Failed to fetch leaves:", error);
+      res.status(500).json({ error: "Failed to fetch leaves" });
+    }
+  });
+  
 //get a leave
 app.get("/leaves/:id", async (req, res)=>{
   try {
@@ -52,18 +68,7 @@ app.put("/leaves/:id", async(req, res)=>{
 
 })
 
-//get the no of entries per regestration num[
-  app.get("/leave", async (req, res)=>{
-    try {
-      const {regnum}= req.body;
-      const count= await pool.query("SELECT COUNT(*) as count FROM stdleaves WHERE regnum = $1",[regnum]);
-  
-      res.json(count.rowCount)
-    } catch (err) {
-      console.log(err.messgae)
-      
-    }
-})
+
 
 // delete a leave_application
 
